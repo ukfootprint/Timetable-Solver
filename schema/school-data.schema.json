@@ -1,0 +1,194 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/school-data.schema.json",
+  "title": "School Data",
+  "description": "Schema for school timetabling input data",
+  "type": "object",
+  "required": ["lessons", "teachers", "rooms", "groups", "subjects"],
+  "properties": {
+    "num_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 7,
+      "default": 5,
+      "description": "Number of days in the timetable week"
+    },
+    "num_periods": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12,
+      "default": 6,
+      "description": "Number of periods per day"
+    },
+    "teachers": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Teacher" },
+      "minItems": 1,
+      "description": "List of teachers"
+    },
+    "rooms": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Room" },
+      "minItems": 1,
+      "description": "List of available rooms"
+    },
+    "groups": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/StudentGroup" },
+      "minItems": 1,
+      "description": "List of student groups/classes"
+    },
+    "subjects": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Subject" },
+      "minItems": 1,
+      "description": "List of subjects"
+    },
+    "lessons": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Lesson" },
+      "minItems": 1,
+      "description": "List of lessons to schedule"
+    },
+    "teacher_availability": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "$ref": "#/definitions/TimeSlot" }
+      },
+      "description": "Map of teacher ID to their unavailable time slots"
+    }
+  },
+  "definitions": {
+    "Teacher": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique teacher identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Teacher's full name"
+        },
+        "code": {
+          "type": "string",
+          "description": "Short code for the teacher (e.g., initials)"
+        }
+      }
+    },
+    "Room": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique room identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Room name/number"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["standard", "science_lab", "computer_room", "sports_hall", "art_room", "music_room"],
+          "description": "Room type for specialized facilities"
+        },
+        "capacity": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum number of students"
+        }
+      }
+    },
+    "StudentGroup": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique group identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Group name (e.g., 'Year 7A')"
+        },
+        "year_group": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Year/grade level"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of students in the group"
+        }
+      }
+    },
+    "Subject": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique subject identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Subject name"
+        },
+        "required_room_type": {
+          "type": "string",
+          "enum": ["standard", "science_lab", "computer_room", "sports_hall", "art_room", "music_room"],
+          "description": "Required room type for this subject"
+        }
+      }
+    },
+    "Lesson": {
+      "type": "object",
+      "required": ["id", "teacher_id", "group_id", "subject_id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique lesson identifier"
+        },
+        "teacher_id": {
+          "type": "string",
+          "description": "Reference to teacher"
+        },
+        "group_id": {
+          "type": "string",
+          "description": "Reference to student group"
+        },
+        "subject_id": {
+          "type": "string",
+          "description": "Reference to subject"
+        },
+        "duration": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1,
+          "description": "Number of consecutive periods"
+        }
+      }
+    },
+    "TimeSlot": {
+      "type": "object",
+      "required": ["day", "period"],
+      "properties": {
+        "day": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 6,
+          "description": "Day index (0 = Monday)"
+        },
+        "period": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Period number (1-based)"
+        }
+      }
+    }
+  }
+}

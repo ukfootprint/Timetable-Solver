@@ -1,0 +1,421 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ai-timetabler.example.com/timetable.schema.json",
+  "title": "Timetable Data Model",
+  "description": "Complete schema for school timetabling data",
+  "type": "object",
+  "required": ["teachers", "classes", "subjects", "rooms", "lessons", "periods"],
+  "properties": {
+    "schoolName": {
+      "type": "string",
+      "description": "Name of the school"
+    },
+    "academicYear": {
+      "type": "string",
+      "description": "Academic year (e.g., '2024-2025')"
+    },
+    "teachers": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Teacher" },
+      "minItems": 1,
+      "description": "List of teachers"
+    },
+    "classes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Class" },
+      "minItems": 1,
+      "description": "List of student classes/groups"
+    },
+    "subjects": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Subject" },
+      "minItems": 1,
+      "description": "List of subjects"
+    },
+    "rooms": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Room" },
+      "minItems": 1,
+      "description": "List of rooms"
+    },
+    "lessons": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Lesson" },
+      "minItems": 1,
+      "description": "List of lessons to be scheduled"
+    },
+    "periods": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Period" },
+      "minItems": 1,
+      "description": "Fixed period structure for the school day"
+    }
+  },
+  "definitions": {
+    "Day": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4,
+      "description": "Day of week: 0=Monday, 1=Tuesday, 2=Wednesday, 3=Thursday, 4=Friday"
+    },
+    "MinutesFromMidnight": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1439,
+      "description": "Time as minutes from midnight (0-1439). E.g., 9:00 AM = 540"
+    },
+    "Availability": {
+      "type": "object",
+      "required": ["day", "startMinutes", "endMinutes", "available"],
+      "properties": {
+        "day": {
+          "$ref": "#/definitions/Day"
+        },
+        "startMinutes": {
+          "$ref": "#/definitions/MinutesFromMidnight",
+          "description": "Start time in minutes from midnight"
+        },
+        "endMinutes": {
+          "$ref": "#/definitions/MinutesFromMidnight",
+          "description": "End time in minutes from midnight"
+        },
+        "available": {
+          "type": "boolean",
+          "description": "True if available during this time window"
+        },
+        "reason": {
+          "type": "string",
+          "description": "Optional reason for unavailability"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RoomType": {
+      "type": "string",
+      "enum": [
+        "classroom",
+        "science_lab",
+        "computer_lab",
+        "gym",
+        "sports_hall",
+        "art_room",
+        "music_room",
+        "workshop",
+        "library",
+        "auditorium",
+        "other"
+      ],
+      "description": "Type of room/facility"
+    },
+    "Teacher": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique teacher identifier"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Teacher's full name"
+        },
+        "code": {
+          "type": "string",
+          "maxLength": 5,
+          "description": "Short code (e.g., initials)"
+        },
+        "email": {
+          "type": "string",
+          "description": "Teacher's email address"
+        },
+        "subjects": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Subject IDs this teacher can teach"
+        },
+        "availability": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Availability" },
+          "description": "Teacher's availability windows"
+        },
+        "maxPeriodsPerDay": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12,
+          "description": "Maximum teaching periods per day"
+        },
+        "maxPeriodsPerWeek": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60,
+          "description": "Maximum teaching periods per week"
+        },
+        "preferredRooms": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Preferred room IDs for this teacher"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Class": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique class identifier"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Class name (e.g., 'Year 7A')"
+        },
+        "yearGroup": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 13,
+          "description": "Year/grade level"
+        },
+        "studentCount": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of students in the class"
+        },
+        "availability": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Availability" },
+          "description": "Class-specific availability constraints"
+        },
+        "homeRoom": {
+          "type": "string",
+          "description": "Home room ID for this class"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Subject": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique subject identifier"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Subject name"
+        },
+        "code": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "Short subject code"
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "description": "Display color in hex format"
+        },
+        "requiresSpecialistRoom": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether this subject needs a specialist room"
+        },
+        "requiredRoomType": {
+          "$ref": "#/definitions/RoomType",
+          "description": "Required room type if specialist room needed"
+        },
+        "department": {
+          "type": "string",
+          "description": "Academic department"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Room": {
+      "type": "object",
+      "required": ["id", "name", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique room identifier"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Room name/number"
+        },
+        "type": {
+          "$ref": "#/definitions/RoomType",
+          "description": "Type of room"
+        },
+        "capacity": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum student capacity"
+        },
+        "building": {
+          "type": "string",
+          "description": "Building name/identifier"
+        },
+        "floor": {
+          "type": "integer",
+          "description": "Floor number"
+        },
+        "availability": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Availability" },
+          "description": "Room availability windows"
+        },
+        "equipment": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Available equipment in the room"
+        },
+        "accessible": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether the room is wheelchair accessible"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RoomRequirement": {
+      "type": "object",
+      "properties": {
+        "roomType": {
+          "$ref": "#/definitions/RoomType",
+          "description": "Required room type"
+        },
+        "minCapacity": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Minimum room capacity needed"
+        },
+        "preferredRooms": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Preferred room IDs"
+        },
+        "excludedRooms": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Room IDs that cannot be used"
+        },
+        "requiresEquipment": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Required equipment"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Lesson": {
+      "type": "object",
+      "required": ["id", "teacherId", "classId", "subjectId", "lessonsPerWeek"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique lesson identifier"
+        },
+        "teacherId": {
+          "type": "string",
+          "description": "Teacher assigned to this lesson"
+        },
+        "classId": {
+          "type": "string",
+          "description": "Class/student group for this lesson"
+        },
+        "subjectId": {
+          "type": "string",
+          "description": "Subject being taught"
+        },
+        "durationMinutes": {
+          "type": "integer",
+          "minimum": 15,
+          "maximum": 240,
+          "default": 60,
+          "description": "Lesson duration in minutes"
+        },
+        "lessonsPerWeek": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Number of times this lesson occurs per week"
+        },
+        "roomRequirement": {
+          "$ref": "#/definitions/RoomRequirement",
+          "description": "Room requirements for this lesson"
+        },
+        "splitAllowed": {
+          "type": "boolean",
+          "default": true,
+          "description": "Can lessons be split across different days"
+        },
+        "consecutivePreferred": {
+          "type": "boolean",
+          "default": false,
+          "description": "Prefer consecutive periods (double lessons)"
+        },
+        "fixedSlots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["day", "periodId"],
+            "properties": {
+              "day": { "$ref": "#/definitions/Day" },
+              "periodId": { "type": "string" }
+            }
+          },
+          "description": "Pre-fixed time slots for this lesson"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Period": {
+      "type": "object",
+      "required": ["id", "name", "startMinutes", "endMinutes", "day"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique period identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Period display name (e.g., 'Period 1', 'Morning Break')"
+        },
+        "startMinutes": {
+          "$ref": "#/definitions/MinutesFromMidnight",
+          "description": "Period start time"
+        },
+        "endMinutes": {
+          "$ref": "#/definitions/MinutesFromMidnight",
+          "description": "Period end time"
+        },
+        "day": {
+          "$ref": "#/definitions/Day",
+          "description": "Day of the week"
+        },
+        "isBreak": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether this is a break period (not schedulable)"
+        },
+        "isLunch": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether this is a lunch period"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

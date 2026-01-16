@@ -1,0 +1,169 @@
+{
+  "schoolName": "Westbrook Academy",
+  "academicYear": "2024-2025",
+  "teachers": [
+    {
+      "id": "t1",
+      "name": "Sarah Mitchell",
+      "code": "SMI",
+      "email": "s.mitchell@westbrook.edu",
+      "subjects": ["eng"],
+      "maxPeriodsPerDay": 5,
+      "maxPeriodsPerWeek": 22,
+      "availability": [
+        { "day": 0, "startMinutes": 840, "endMinutes": 900, "available": false, "reason": "Staff meeting" },
+        { "day": 4, "startMinutes": 840, "endMinutes": 960, "available": false, "reason": "Part-time" }
+      ]
+    },
+    {
+      "id": "t2",
+      "name": "Emma Davies",
+      "code": "EDA",
+      "subjects": ["mat"],
+      "maxPeriodsPerDay": 6,
+      "maxPeriodsPerWeek": 25
+    },
+    {
+      "id": "t3",
+      "name": "Rachel Green",
+      "code": "RGR",
+      "subjects": ["sci"],
+      "maxPeriodsPerDay": 5,
+      "preferredRooms": ["sci1"]
+    },
+    {
+      "id": "t4",
+      "name": "Philippe Dubois",
+      "code": "PDU",
+      "subjects": ["fre"],
+      "maxPeriodsPerDay": 5,
+      "availability": [
+        { "day": 0, "startMinutes": 480, "endMinutes": 600, "available": false, "reason": "Late start" }
+      ]
+    },
+    {
+      "id": "t5",
+      "name": "Laura Hughes",
+      "code": "LHU",
+      "subjects": ["his"],
+      "maxPeriodsPerDay": 5
+    },
+    {
+      "id": "t6",
+      "name": "Jennifer Clark",
+      "code": "JCL",
+      "subjects": ["geo"],
+      "maxPeriodsPerDay": 5
+    },
+    {
+      "id": "t7",
+      "name": "Marcus Johnson",
+      "code": "MJO",
+      "subjects": ["pe"],
+      "maxPeriodsPerDay": 6,
+      "preferredRooms": ["gym1", "sph1"]
+    },
+    {
+      "id": "t8",
+      "name": "Daniel Chen",
+      "code": "DCH",
+      "subjects": ["cmp"],
+      "maxPeriodsPerDay": 5,
+      "preferredRooms": ["cmp1"]
+    }
+  ],
+  "classes": [
+    { "id": "7a", "name": "Year 7A", "yearGroup": 7, "studentCount": 28 },
+    { "id": "7b", "name": "Year 7B", "yearGroup": 7, "studentCount": 26 },
+    { "id": "8a", "name": "Year 8A", "yearGroup": 8, "studentCount": 30 },
+    { "id": "8b", "name": "Year 8B", "yearGroup": 8, "studentCount": 27 }
+  ],
+  "subjects": [
+    { "id": "eng", "name": "English", "code": "ENG", "color": "#3B82F6", "department": "Languages" },
+    { "id": "mat", "name": "Mathematics", "code": "MAT", "color": "#10B981", "department": "Mathematics" },
+    { "id": "sci", "name": "Science", "code": "SCI", "color": "#8B5CF6", "requiresSpecialistRoom": true, "requiredRoomType": "science_lab", "department": "Sciences" },
+    { "id": "his", "name": "History", "code": "HIS", "color": "#F59E0B", "department": "Humanities" },
+    { "id": "geo", "name": "Geography", "code": "GEO", "color": "#06B6D4", "department": "Humanities" },
+    { "id": "fre", "name": "French", "code": "FRE", "color": "#EC4899", "department": "Languages" },
+    { "id": "pe", "name": "Physical Education", "code": "PE", "color": "#EF4444", "requiresSpecialistRoom": true, "requiredRoomType": "gym", "department": "Physical Education" },
+    { "id": "cmp", "name": "Computing", "code": "CMP", "color": "#6366F1", "requiresSpecialistRoom": true, "requiredRoomType": "computer_lab", "department": "Technology" }
+  ],
+  "rooms": [
+    { "id": "r101", "name": "Room 101", "type": "classroom", "capacity": 30, "building": "Main", "floor": 1 },
+    { "id": "r102", "name": "Room 102", "type": "classroom", "capacity": 30, "building": "Main", "floor": 1 },
+    { "id": "r103", "name": "Room 103", "type": "classroom", "capacity": 30, "building": "Main", "floor": 1 },
+    { "id": "r104", "name": "Room 104", "type": "classroom", "capacity": 30, "building": "Main", "floor": 1 },
+    { "id": "r201", "name": "Room 201", "type": "classroom", "capacity": 25, "building": "Main", "floor": 2 },
+    { "id": "r202", "name": "Room 202", "type": "classroom", "capacity": 25, "building": "Main", "floor": 2 },
+    { "id": "sci1", "name": "Science Lab 1", "type": "science_lab", "capacity": 24, "building": "Science Block", "floor": 0, "equipment": ["bunsen_burners", "fume_hood", "microscopes"] },
+    { "id": "sci2", "name": "Science Lab 2", "type": "science_lab", "capacity": 24, "building": "Science Block", "floor": 0, "equipment": ["bunsen_burners", "microscopes"] },
+    { "id": "cmp1", "name": "Computer Suite 1", "type": "computer_lab", "capacity": 30, "building": "Tech Block", "floor": 1, "equipment": ["computers", "projector", "whiteboard"] },
+    { "id": "gym1", "name": "Gymnasium", "type": "gym", "capacity": 60, "building": "Sports Centre", "floor": 0, "equipment": ["mats", "equipment_storage"] },
+    { "id": "sph1", "name": "Sports Hall", "type": "sports_hall", "capacity": 100, "building": "Sports Centre", "floor": 0 }
+  ],
+  "lessons": [
+    { "id": "l001", "teacherId": "t1", "classId": "7a", "subjectId": "eng", "lessonsPerWeek": 5, "durationMinutes": 60 },
+    { "id": "l002", "teacherId": "t2", "classId": "7a", "subjectId": "mat", "lessonsPerWeek": 5, "durationMinutes": 60 },
+    { "id": "l003", "teacherId": "t3", "classId": "7a", "subjectId": "sci", "lessonsPerWeek": 4, "durationMinutes": 60, "roomRequirement": { "roomType": "science_lab" } },
+    { "id": "l004", "teacherId": "t4", "classId": "7a", "subjectId": "fre", "lessonsPerWeek": 3, "durationMinutes": 60 },
+    { "id": "l005", "teacherId": "t5", "classId": "7a", "subjectId": "his", "lessonsPerWeek": 2, "durationMinutes": 60 },
+    { "id": "l006", "teacherId": "t6", "classId": "7a", "subjectId": "geo", "lessonsPerWeek": 2, "durationMinutes": 60 },
+    { "id": "l007", "teacherId": "t7", "classId": "7a", "subjectId": "pe", "lessonsPerWeek": 2, "durationMinutes": 60, "consecutivePreferred": true, "roomRequirement": { "roomType": "gym" } },
+    { "id": "l008", "teacherId": "t8", "classId": "7a", "subjectId": "cmp", "lessonsPerWeek": 2, "durationMinutes": 60, "roomRequirement": { "roomType": "computer_lab" } },
+
+    { "id": "l011", "teacherId": "t1", "classId": "7b", "subjectId": "eng", "lessonsPerWeek": 5, "durationMinutes": 60 },
+    { "id": "l012", "teacherId": "t2", "classId": "7b", "subjectId": "mat", "lessonsPerWeek": 5, "durationMinutes": 60 },
+    { "id": "l013", "teacherId": "t3", "classId": "7b", "subjectId": "sci", "lessonsPerWeek": 4, "durationMinutes": 60, "roomRequirement": { "roomType": "science_lab" } },
+    { "id": "l014", "teacherId": "t4", "classId": "7b", "subjectId": "fre", "lessonsPerWeek": 3, "durationMinutes": 60 },
+    { "id": "l015", "teacherId": "t5", "classId": "7b", "subjectId": "his", "lessonsPerWeek": 2, "durationMinutes": 60 },
+    { "id": "l016", "teacherId": "t6", "classId": "7b", "subjectId": "geo", "lessonsPerWeek": 2, "durationMinutes": 60 },
+    { "id": "l017", "teacherId": "t7", "classId": "7b", "subjectId": "pe", "lessonsPerWeek": 2, "durationMinutes": 60, "consecutivePreferred": true, "roomRequirement": { "roomType": "gym" } },
+    { "id": "l018", "teacherId": "t8", "classId": "7b", "subjectId": "cmp", "lessonsPerWeek": 2, "durationMinutes": 60, "roomRequirement": { "roomType": "computer_lab" } }
+  ],
+  "periods": [
+    { "id": "mon1", "name": "Period 1", "day": 0, "startMinutes": 540, "endMinutes": 600 },
+    { "id": "mon2", "name": "Period 2", "day": 0, "startMinutes": 600, "endMinutes": 660 },
+    { "id": "mon_break", "name": "Morning Break", "day": 0, "startMinutes": 660, "endMinutes": 680, "isBreak": true },
+    { "id": "mon3", "name": "Period 3", "day": 0, "startMinutes": 680, "endMinutes": 740 },
+    { "id": "mon4", "name": "Period 4", "day": 0, "startMinutes": 740, "endMinutes": 800 },
+    { "id": "mon_lunch", "name": "Lunch", "day": 0, "startMinutes": 800, "endMinutes": 860, "isLunch": true },
+    { "id": "mon5", "name": "Period 5", "day": 0, "startMinutes": 860, "endMinutes": 920 },
+    { "id": "mon6", "name": "Period 6", "day": 0, "startMinutes": 920, "endMinutes": 980 },
+
+    { "id": "tue1", "name": "Period 1", "day": 1, "startMinutes": 540, "endMinutes": 600 },
+    { "id": "tue2", "name": "Period 2", "day": 1, "startMinutes": 600, "endMinutes": 660 },
+    { "id": "tue_break", "name": "Morning Break", "day": 1, "startMinutes": 660, "endMinutes": 680, "isBreak": true },
+    { "id": "tue3", "name": "Period 3", "day": 1, "startMinutes": 680, "endMinutes": 740 },
+    { "id": "tue4", "name": "Period 4", "day": 1, "startMinutes": 740, "endMinutes": 800 },
+    { "id": "tue_lunch", "name": "Lunch", "day": 1, "startMinutes": 800, "endMinutes": 860, "isLunch": true },
+    { "id": "tue5", "name": "Period 5", "day": 1, "startMinutes": 860, "endMinutes": 920 },
+    { "id": "tue6", "name": "Period 6", "day": 1, "startMinutes": 920, "endMinutes": 980 },
+
+    { "id": "wed1", "name": "Period 1", "day": 2, "startMinutes": 540, "endMinutes": 600 },
+    { "id": "wed2", "name": "Period 2", "day": 2, "startMinutes": 600, "endMinutes": 660 },
+    { "id": "wed_break", "name": "Morning Break", "day": 2, "startMinutes": 660, "endMinutes": 680, "isBreak": true },
+    { "id": "wed3", "name": "Period 3", "day": 2, "startMinutes": 680, "endMinutes": 740 },
+    { "id": "wed4", "name": "Period 4", "day": 2, "startMinutes": 740, "endMinutes": 800 },
+    { "id": "wed_lunch", "name": "Lunch", "day": 2, "startMinutes": 800, "endMinutes": 860, "isLunch": true },
+    { "id": "wed5", "name": "Period 5", "day": 2, "startMinutes": 860, "endMinutes": 920 },
+    { "id": "wed6", "name": "Period 6", "day": 2, "startMinutes": 920, "endMinutes": 980 },
+
+    { "id": "thu1", "name": "Period 1", "day": 3, "startMinutes": 540, "endMinutes": 600 },
+    { "id": "thu2", "name": "Period 2", "day": 3, "startMinutes": 600, "endMinutes": 660 },
+    { "id": "thu_break", "name": "Morning Break", "day": 3, "startMinutes": 660, "endMinutes": 680, "isBreak": true },
+    { "id": "thu3", "name": "Period 3", "day": 3, "startMinutes": 680, "endMinutes": 740 },
+    { "id": "thu4", "name": "Period 4", "day": 3, "startMinutes": 740, "endMinutes": 800 },
+    { "id": "thu_lunch", "name": "Lunch", "day": 3, "startMinutes": 800, "endMinutes": 860, "isLunch": true },
+    { "id": "thu5", "name": "Period 5", "day": 3, "startMinutes": 860, "endMinutes": 920 },
+    { "id": "thu6", "name": "Period 6", "day": 3, "startMinutes": 920, "endMinutes": 980 },
+
+    { "id": "fri1", "name": "Period 1", "day": 4, "startMinutes": 540, "endMinutes": 600 },
+    { "id": "fri2", "name": "Period 2", "day": 4, "startMinutes": 600, "endMinutes": 660 },
+    { "id": "fri_break", "name": "Morning Break", "day": 4, "startMinutes": 660, "endMinutes": 680, "isBreak": true },
+    { "id": "fri3", "name": "Period 3", "day": 4, "startMinutes": 680, "endMinutes": 740 },
+    { "id": "fri4", "name": "Period 4", "day": 4, "startMinutes": 740, "endMinutes": 800 },
+    { "id": "fri_lunch", "name": "Lunch", "day": 4, "startMinutes": 800, "endMinutes": 860, "isLunch": true },
+    { "id": "fri5", "name": "Period 5", "day": 4, "startMinutes": 860, "endMinutes": 920 },
+    { "id": "fri6", "name": "Period 6", "day": 4, "startMinutes": 920, "endMinutes": 980 }
+  ]
+}

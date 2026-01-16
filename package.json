@@ -1,0 +1,30 @@
+{
+  "name": "ai-timetabler-poc",
+  "version": "0.1.0",
+  "description": "AI Timetabler Proof of Concept - Schema validation and TypeScript types",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "validate:json": "npx ajv validate -s schema/timetable.schema.json -d data/sample-timetable.json",
+    "validate:old": "npx ajv validate -s schema/school-data.schema.json -d data/sample-school.json",
+    "test": "npx tsx schema/test-validation.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ajv-cli": "^5.0.0",
+    "json-schema-to-typescript": "^13.1.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  },
+  "keywords": [
+    "timetabling",
+    "constraint-satisfaction",
+    "or-tools",
+    "scheduling"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,116 @@
+{
+  "num_days": 5,
+  "num_periods": 6,
+  "teachers": [
+    { "id": "t1", "name": "Sarah Mitchell", "code": "SMI" },
+    { "id": "t2", "name": "Emma Davies", "code": "EDA" },
+    { "id": "t3", "name": "Rachel Green", "code": "RGR" },
+    { "id": "t4", "name": "Philippe Dubois", "code": "PDU" },
+    { "id": "t5", "name": "Laura Hughes", "code": "LHU" },
+    { "id": "t6", "name": "Jennifer Clark", "code": "JCL" },
+    { "id": "t7", "name": "Marcus Johnson", "code": "MJO" },
+    { "id": "t8", "name": "Daniel Chen", "code": "DCH" }
+  ],
+  "rooms": [
+    { "id": "r101", "name": "Room 101", "type": "standard", "capacity": 30 },
+    { "id": "r102", "name": "Room 102", "type": "standard", "capacity": 30 },
+    { "id": "r103", "name": "Room 103", "type": "standard", "capacity": 30 },
+    { "id": "r104", "name": "Room 104", "type": "standard", "capacity": 30 },
+    { "id": "r201", "name": "Room 201", "type": "standard", "capacity": 25 },
+    { "id": "sci1", "name": "Science Lab 1", "type": "science_lab", "capacity": 24 },
+    { "id": "cmp1", "name": "Computer Suite 1", "type": "computer_room", "capacity": 30 },
+    { "id": "sph", "name": "Sports Hall", "type": "sports_hall", "capacity": 60 }
+  ],
+  "groups": [
+    { "id": "7a", "name": "Year 7A", "year_group": 7, "size": 28 },
+    { "id": "7b", "name": "Year 7B", "year_group": 7, "size": 26 }
+  ],
+  "subjects": [
+    { "id": "eng", "name": "English" },
+    { "id": "mat", "name": "Maths" },
+    { "id": "sci", "name": "Science", "required_room_type": "science_lab" },
+    { "id": "his", "name": "History" },
+    { "id": "geo", "name": "Geography" },
+    { "id": "fre", "name": "French" },
+    { "id": "pe", "name": "PE", "required_room_type": "sports_hall" },
+    { "id": "cmp", "name": "Computing", "required_room_type": "computer_room" }
+  ],
+  "lessons": [
+    { "id": "l001", "teacher_id": "t1", "group_id": "7a", "subject_id": "eng" },
+    { "id": "l002", "teacher_id": "t1", "group_id": "7a", "subject_id": "eng" },
+    { "id": "l003", "teacher_id": "t1", "group_id": "7a", "subject_id": "eng" },
+    { "id": "l004", "teacher_id": "t1", "group_id": "7a", "subject_id": "eng" },
+    { "id": "l005", "teacher_id": "t1", "group_id": "7a", "subject_id": "eng" },
+
+    { "id": "l006", "teacher_id": "t2", "group_id": "7a", "subject_id": "mat" },
+    { "id": "l007", "teacher_id": "t2", "group_id": "7a", "subject_id": "mat" },
+    { "id": "l008", "teacher_id": "t2", "group_id": "7a", "subject_id": "mat" },
+    { "id": "l009", "teacher_id": "t2", "group_id": "7a", "subject_id": "mat" },
+    { "id": "l010", "teacher_id": "t2", "group_id": "7a", "subject_id": "mat" },
+
+    { "id": "l011", "teacher_id": "t3", "group_id": "7a", "subject_id": "sci" },
+    { "id": "l012", "teacher_id": "t3", "group_id": "7a", "subject_id": "sci" },
+    { "id": "l013", "teacher_id": "t3", "group_id": "7a", "subject_id": "sci" },
+    { "id": "l014", "teacher_id": "t3", "group_id": "7a", "subject_id": "sci" },
+
+    { "id": "l015", "teacher_id": "t4", "group_id": "7a", "subject_id": "fre" },
+    { "id": "l016", "teacher_id": "t4", "group_id": "7a", "subject_id": "fre" },
+    { "id": "l017", "teacher_id": "t4", "group_id": "7a", "subject_id": "fre" },
+
+    { "id": "l018", "teacher_id": "t5", "group_id": "7a", "subject_id": "his" },
+    { "id": "l019", "teacher_id": "t5", "group_id": "7a", "subject_id": "his" },
+
+    { "id": "l020", "teacher_id": "t6", "group_id": "7a", "subject_id": "geo" },
+    { "id": "l021", "teacher_id": "t6", "group_id": "7a", "subject_id": "geo" },
+
+    { "id": "l022", "teacher_id": "t7", "group_id": "7a", "subject_id": "pe" },
+    { "id": "l023", "teacher_id": "t7", "group_id": "7a", "subject_id": "pe" },
+
+    { "id": "l024", "teacher_id": "t8", "group_id": "7a", "subject_id": "cmp" },
+    { "id": "l025", "teacher_id": "t8", "group_id": "7a", "subject_id": "cmp" },
+
+    { "id": "l026", "teacher_id": "t1", "group_id": "7b", "subject_id": "eng" },
+    { "id": "l027", "teacher_id": "t1", "group_id": "7b", "subject_id": "eng" },
+    { "id": "l028", "teacher_id": "t1", "group_id": "7b", "subject_id": "eng" },
+    { "id": "l029", "teacher_id": "t1", "group_id": "7b", "subject_id": "eng" },
+    { "id": "l030", "teacher_id": "t1", "group_id": "7b", "subject_id": "eng" },
+
+    { "id": "l031", "teacher_id": "t2", "group_id": "7b", "subject_id": "mat" },
+    { "id": "l032", "teacher_id": "t2", "group_id": "7b", "subject_id": "mat" },
+    { "id": "l033", "teacher_id": "t2", "group_id": "7b", "subject_id": "mat" },
+    { "id": "l034", "teacher_id": "t2", "group_id": "7b", "subject_id": "mat" },
+    { "id": "l035", "teacher_id": "t2", "group_id": "7b", "subject_id": "mat" },
+
+    { "id": "l036", "teacher_id": "t3", "group_id": "7b", "subject_id": "sci" },
+    { "id": "l037", "teacher_id": "t3", "group_id": "7b", "subject_id": "sci" },
+    { "id": "l038", "teacher_id": "t3", "group_id": "7b", "subject_id": "sci" },
+    { "id": "l039", "teacher_id": "t3", "group_id": "7b", "subject_id": "sci" },
+
+    { "id": "l040", "teacher_id": "t4", "group_id": "7b", "subject_id": "fre" },
+    { "id": "l041", "teacher_id": "t4", "group_id": "7b", "subject_id": "fre" },
+    { "id": "l042", "teacher_id": "t4", "group_id": "7b", "subject_id": "fre" },
+
+    { "id": "l043", "teacher_id": "t5", "group_id": "7b", "subject_id": "his" },
+    { "id": "l044", "teacher_id": "t5", "group_id": "7b", "subject_id": "his" },
+
+    { "id": "l045", "teacher_id": "t6", "group_id": "7b", "subject_id": "geo" },
+    { "id": "l046", "teacher_id": "t6", "group_id": "7b", "subject_id": "geo" },
+
+    { "id": "l047", "teacher_id": "t7", "group_id": "7b", "subject_id": "pe" },
+    { "id": "l048", "teacher_id": "t7", "group_id": "7b", "subject_id": "pe" },
+
+    { "id": "l049", "teacher_id": "t8", "group_id": "7b", "subject_id": "cmp" },
+    { "id": "l050", "teacher_id": "t8", "group_id": "7b", "subject_id": "cmp" }
+  ],
+  "teacher_availability": {
+    "t1": [
+      { "day": 0, "period": 4 },
+      { "day": 4, "period": 5 },
+      { "day": 4, "period": 6 }
+    ],
+    "t4": [
+      { "day": 0, "period": 1 },
+      { "day": 0, "period": 2 }
+    ]
+  }
+}

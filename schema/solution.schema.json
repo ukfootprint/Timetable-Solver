@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/solution.schema.json",
+  "title": "Timetable Solution",
+  "description": "Schema for solver output",
+  "type": "object",
+  "required": ["status", "assignments", "solve_time_ms"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["OPTIMAL", "FEASIBLE", "INFEASIBLE", "MODEL_INVALID", "UNKNOWN"],
+      "description": "Solver status"
+    },
+    "solve_time_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Time taken to solve in milliseconds"
+    },
+    "objective_value": {
+      "type": ["integer", "null"],
+      "description": "Objective function value (if optimizing)"
+    },
+    "assignments": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Assignment" },
+      "description": "List of lesson assignments"
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_lessons": { "type": "integer" },
+        "assigned_lessons": { "type": "integer" },
+        "teachers": { "type": "integer" },
+        "rooms": { "type": "integer" },
+        "groups": { "type": "integer" }
+      }
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp of when the solution was generated"
+    }
+  },
+  "definitions": {
+    "Assignment": {
+      "type": "object",
+      "required": ["lesson_id", "day", "period", "room_id"],
+      "properties": {
+        "lesson_id": {
+          "type": "string",
+          "description": "Reference to the lesson"
+        },
+        "day": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Day index (0 = Monday)"
+        },
+        "period": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Period number"
+        },
+        "room_id": {
+          "type": "string",
+          "description": "Assigned room ID"
+        },
+        "room_name": {
+          "type": "string",
+          "description": "Room display name"
+        },
+        "teacher_id": {
+          "type": "string"
+        },
+        "teacher_name": {
+          "type": "string"
+        },
+        "group_id": {
+          "type": "string"
+        },
+        "group_name": {
+          "type": "string"
+        },
+        "subject_id": {
+          "type": "string"
+        },
+        "subject_name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
