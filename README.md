@@ -127,6 +127,18 @@ python -m solver.cli metrics output.json --input input.json --format report
 python -m solver.cli metrics output.json --format json
 ```
 
+## Return to virtual environment
+
+```bash
+# Navigate to the directory containing your virtual environment and run:
+
+# Win Powershell
+\venv\Scripts\Activate.ps1
+
+#MacOS/Linux 	bash/zsh
+source venv/bin/activate
+```
+
 ## Input Schema
 
 Input data is provided as JSON. The schema uses Pydantic models with automatic validation.
